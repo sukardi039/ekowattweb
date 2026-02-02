@@ -289,11 +289,13 @@
       // Load config from runtime env, meta tag, then config.json
       async function loadConfig() {
         // First try runtime env (injected via env.js or Docker entrypoint)
-        if (window.BMP_URL && window.BMP_URL.trim()) {
+        if (typeof window.BMP_URL !== 'undefined' && window.BMP_URL && window.BMP_URL.trim()) {
           window.config = { BMP_URL: window.BMP_URL.trim() };
-          console.log("Config loaded from runtime env:", window.config);
+          console.log("Config loaded from runtime env (window.BMP_URL):", window.config);
           setConfiguredLinks();
           return;
+        } else {
+          console.log("window.BMP_URL not set or empty, trying meta tag...");
         }
 
         // Next try meta tag (injected by hosting platform)
