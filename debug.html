@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Config Debug - EKOWATT</title>
+    <style>
+      body {
+        font-family: "Courier New", monospace;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #1a1a1a;
+        color: #0f0;
+      }
+      h1 {
+        color: #0f0;
+      }
+      .section {
+        background: #000;
+        padding: 20px;
+        margin: 20px 0;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+      }
+      .error {
+        color: #f00;
+      }
+      .success {
+        color: #0f0;
+      }
+      .warning {
+        color: #ff0;
+      }
+      pre {
+        background: #000;
+        padding: 10px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔍 EKOWATT Configuration Debug</h1>
+
+    <div class="section">
+      <h2>1. config.json Content</h2>
+      <pre id="config-content">Loading...</pre>
+    </div>
+
+    <div class="section">
+      <h2>2. Analysis</h2>
+      <div id="analysis">Analyzing...</div>
+    </div>
+
+    <div class="section">
+      <h2>3. Instructions</h2>
+      <div id="instructions"></div>
+    </div>
+
+    <script>
+      async function debugConfig() {
+        try {
+          const response = await fetch("config.json");
+          const config = await response.json();
+
+          // Display config content
+          document.getElementById("config-content").textContent =
+            JSON.stringify(config, null, 2);
+
+          // Analyze
+          const analysisDiv = document.getElementById("analysis");
+          const instructionsDiv = document.getElementById("instructions");
+
+          if (!config.BMP_URL) {
+            analysisDiv.innerHTML = `
+                        <p class="error">❌ BMP_URL is missing from config.json</p>
+                        <p>The config.json file exists but doesn't have BMP_URL property.</p>
+                    `;
+            instructionsDiv.innerHTML = `
+                        <p class="warning">Docker entrypoint is NOT running or failed.</p>
+                        <ol>
+                            <li>Check if ENTRYPOINT is in Dockerfile</li>
+                            <li>Check container logs for errors</li>
+                            <li>Verify docker-entrypoint.sh has correct permissions</li>
+                        </ol>
+                    `;
+          } else if (config.BMP_URL === "REPLACE_ME_IN_PRODUCTION") {
+            analysisDiv.innerHTML = `
+                        <p class="error">❌ BMP_URL environment variable is NOT set in Dokploy</p>
+                        <p>The Docker container is using the default placeholder value.</p>
+                        <p>Container logs should show: <code>✗ WARNING: BMP_URL environment variable is NOT set!</code></p>
+                    `;
+            instructionsDiv.innerHTML = `
+                        <p class="warning"><strong>FIX REQUIRED:</strong></p>
+                        <ol>
+                            <li>Go to your Dokploy dashboard</li>
+                            <li>Open your EKOWATT application settings</li>
+                            <li>Find "Environment Variables" section</li>
+                            <li>Add variable:
+                                <ul>
+                                    <li><strong>Name:</strong> BMP_URL</li>
+                                    <li><strong>Value:</strong> https://bmp.innovacityconsulting.com</li>
+                                </ul>
+                            </li>
+                            <li><strong>IMPORTANT:</strong> Click "Redeploy" or "Restart" after adding</li>
+                            <li>Wait for container to restart</li>
+                            <li>Refresh this page to verify</li>
+                        </ol>
+                    `;
+          } else if (config.BMP_URL.startsWith("http")) {
+            analysisDiv.innerHTML = `
+                        <p class="success">✅ BMP_URL is configured correctly!</p>
+                        <p>Value: <strong>${config.BMP_URL}</strong></p>
+                        <p>The environment variable injection is working.</p>
+                    `;
+            instructionsDiv.innerHTML = `
+                        <p class="success">Configuration is correct! You can now:</p>
+                        <ul>
+                            <li><a href="/" style="color: #0f0;">Go to main site</a></li>
+                            <li>Click BMP menu to access: ${config.BMP_URL}</li>
+                            <li>Delete this debug.html file (optional)</li>
+                        </ul>
+                    `;
+          } else {
+            analysisDiv.innerHTML = `
+                        <p class="warning">⚠️ BMP_URL has unexpected format</p>
+                        <p>Value: <strong>${config.BMP_URL}</strong></p>
+                    `;
+            instructionsDiv.innerHTML = `
+                        <p>Check that BMP_URL is a valid URL starting with http:// or https://</p>
+                    `;
+          }
+        } catch (error) {
+          document.getElementById("config-content").textContent =
+            "ERROR: " + error.message;
+          document.getElementById("analysis").innerHTML = `
+                    <p class="error">❌ Could not load config.json</p>
+                    <p>Error: ${error.message}</p>
+                `;
+        }
+      }
+
+      debugConfig();
+    </script>
+  </body>
+</html>
