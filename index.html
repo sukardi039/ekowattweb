@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Environment variable for BMP URL - set this in Dokploy -->
-    <!-- <meta name="bmp-url" content="REPLACE_WITH_ENV_VAR"> -->
     <title>EKOWATT - Sustainable Energy Solutions</title>
-    <script src="env.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -286,46 +283,28 @@
     </footer>
 
     <script>
-      // Load config from runtime env, meta tag, then config.json
+      // Load config from config.json (updated by Docker entrypoint with BMP_URL env var)
       async function loadConfig() {
-        // First try runtime env (injected via env.js or Docker entrypoint)
-        if (
-          typeof window.BMP_URL !== "undefined" &&
-          window.BMP_URL &&
-          window.BMP_URL.trim()
-        ) {
-          window.config = { BMP_URL: window.BMP_URL.trim() };
-          console.log(
-            "Config loaded from runtime env (window.BMP_URL):",
-            window.config,
-          );
-          setConfiguredLinks();
-          return;
-        } else {
-          console.log("window.BMP_URL not set or empty, trying meta tag...");
-        }
-
-        // Next try meta tag (injected by hosting platform)
-        const envBmpUrl = document.querySelector('meta[name="bmp-url"]');
-
-        if (envBmpUrl && envBmpUrl.content) {
-          // Use environment variable from meta tag
-          window.config = { BMP_URL: envBmpUrl.content };
-          console.log("Config loaded from environment:", window.config);
-          setConfiguredLinks();
-          return;
-        }
-
-        // Fallback to config.json
         try {
           const response = await fetch("config.json");
           const config = await response.json();
-          window.config = config;
-          console.log("Config loaded from config.json:", config);
+
+          if (
+            !config.BMP_URL ||
+            config.BMP_URL === "REPLACE_ME_IN_PRODUCTION"
+          ) {
+            console.error(
+              "ERROR: BMP_URL not configured! Check Docker environment variables.",
+            );
+            window.config = { BMP_URL: "http://localhost:5173" };
+          } else {
+            window.config = config;
+            console.log("✓ Config loaded successfully:", config);
+          }
+
           setConfiguredLinks();
         } catch (error) {
-          console.error("Could not load config.json file:", error);
-          // Final fallback
+          console.error("ERROR: Could not load config.json:", error);
           window.config = { BMP_URL: "http://localhost:5173" };
           setConfiguredLinks();
         }
