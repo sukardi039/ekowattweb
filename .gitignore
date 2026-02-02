@@ -1,8 +1,6 @@
 # Environment variables
 .env
-
-# Generated files (keep config.json for now since it's used in production)
-# config.json
+.env.*
 
 # OS files
 .DS_Store
@@ -19,3 +17,6 @@ npm-debug.log*
 # Temporary files
 *.tmp
 *.temp
+
+# Debug files
+debug.html

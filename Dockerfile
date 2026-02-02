@@ -4,16 +4,14 @@ FROM nginx:alpine
 COPY index.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY config.json /usr/share/nginx/html/
-COPY debug.html /usr/share/nginx/html/
+COPY favicon.svg /usr/share/nginx/html/
 
 # Copy and prepare startup script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 # Fix line endings and make executable
 RUN chmod +x /docker-entrypoint.sh \
-    && dos2unix /docker-entrypoint.sh 2>/dev/null || sed -i 's/\r$//' /docker-entrypoint.sh \
-    && ls -la /docker-entrypoint.sh \
-    && head -1 /docker-entrypoint.sh | od -c
+    && dos2unix /docker-entrypoint.sh 2>/dev/null || sed -i 's/\r$//' /docker-entrypoint.sh
 
 # Expose port 80
 EXPOSE 80
