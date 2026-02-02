@@ -15,6 +15,11 @@
           <h1>EKOWATT</h1>
           <p class="tagline">Sustainable Energy Solutions</p>
         </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <nav class="nav">
           <a href="#home">Home</a>
           <a href="#about">About</a>
@@ -324,6 +329,31 @@
       } else {
         loadConfig();
       }
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+      const nav = document.querySelector(".nav");
+
+      mobileMenuToggle.addEventListener("click", function () {
+        this.classList.toggle("active");
+        nav.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav a").forEach((link) => {
+        link.addEventListener("click", function () {
+          mobileMenuToggle.classList.remove("active");
+          nav.classList.remove("active");
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (e) {
+        if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+          mobileMenuToggle.classList.remove("active");
+          nav.classList.remove("active");
+        }
+      });
 
       // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
