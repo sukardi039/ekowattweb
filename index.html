@@ -6,6 +6,7 @@
     <!-- Environment variable for BMP URL - set this in Dokploy -->
     <!-- <meta name="bmp-url" content="REPLACE_WITH_ENV_VAR"> -->
     <title>EKOWATT - Sustainable Energy Solutions</title>
+    <script src="env.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -285,10 +286,17 @@
     </footer>
 
     <script>
-      // Load config from config.json file at runtime
-      // Falls back to environment variable from meta tag if config.json fails
+      // Load config from runtime env, meta tag, then config.json
       async function loadConfig() {
-        // First try to get from environment variable (set by hosting platform)
+        // First try runtime env (injected via env.js or Docker entrypoint)
+        if (window.BMP_URL && window.BMP_URL.trim()) {
+          window.config = { BMP_URL: window.BMP_URL.trim() };
+          console.log("Config loaded from runtime env:", window.config);
+          setConfiguredLinks();
+          return;
+        }
+
+        // Next try meta tag (injected by hosting platform)
         const envBmpUrl = document.querySelector('meta[name="bmp-url"]');
 
         if (envBmpUrl && envBmpUrl.content) {
