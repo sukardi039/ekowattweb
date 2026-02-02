@@ -1,0 +1,4 @@
+# Dokploy Configuration
+# Force Docker build instead of Nixpacks
+
+builder: dockerfile
