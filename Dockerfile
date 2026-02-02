@@ -6,10 +6,14 @@ COPY styles.css /usr/share/nginx/html/
 COPY config.json /usr/share/nginx/html/
 COPY debug.html /usr/share/nginx/html/
 
-# Copy startup script
+# Copy and prepare startup script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN sed -i 's/\r$//' /docker-entrypoint.sh \
-    && chmod +x /docker-entrypoint.sh
+
+# Fix line endings and make executable
+RUN chmod +x /docker-entrypoint.sh \
+    && dos2unix /docker-entrypoint.sh 2>/dev/null || sed -i 's/\r$//' /docker-entrypoint.sh \
+    && ls -la /docker-entrypoint.sh \
+    && head -1 /docker-entrypoint.sh | od -c
 
 # Expose port 80
 EXPOSE 80
