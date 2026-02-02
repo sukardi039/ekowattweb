@@ -1,0 +1,21 @@
+# Environment variables
+.env
+
+# Generated files (keep config.json for now since it's used in production)
+# config.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
