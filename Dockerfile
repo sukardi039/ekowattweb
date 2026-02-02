@@ -4,6 +4,7 @@ FROM nginx:alpine
 COPY index.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY config.json /usr/share/nginx/html/
+COPY env.js /usr/share/nginx/html/
 
 # Copy startup script
 COPY docker-entrypoint.sh /docker-entrypoint.sh
