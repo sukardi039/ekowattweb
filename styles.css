@@ -7,7 +7,7 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #5A6673;
+  color: #5a6673;
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 
 /* Header Navigation */
 .header {
-  background: linear-gradient(135deg, #6BA639 0%, #7BC043 100%);
+  background: linear-gradient(135deg, #6ba639 0%, #7bc043 100%);
   color: white;
   padding: 1rem 0;
   position: sticky;
@@ -94,7 +94,7 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #7BC043 0%, #6BA639 100%);
+  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
   color: white;
   padding: 120px 20px;
   text-align: center;
@@ -118,7 +118,7 @@ body {
 
 .cta-button {
   background: white;
-  color: #7BC043;
+  color: #7bc043;
   border: none;
   padding: 15px 40px;
   font-size: 1.1rem;
@@ -145,7 +145,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5A6673;
+  color: #5a6673;
 }
 
 .about-content {
@@ -157,7 +157,7 @@ body {
 
 .about-text h3 {
   font-size: 1.5rem;
-  color: #7BC043;
+  color: #7bc043;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -203,7 +203,7 @@ body {
 
 .stat-card h4 {
   font-size: 2.5rem;
-  color: #7BC043;
+  color: #7bc043;
   margin-bottom: 0.5rem;
 }
 
@@ -222,7 +222,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5A6673;
+  color: #5a6673;
 }
 
 .capabilities-grid {
@@ -239,7 +239,7 @@ body {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  border-left: 5px solid #7BC043;
+  border-left: 5px solid #7bc043;
 }
 
 .capability-card:hover {
@@ -254,7 +254,7 @@ body {
 
 .capability-card h3 {
   font-size: 1.3rem;
-  color: #5A6673;
+  color: #5a6673;
   margin-bottom: 1rem;
 }
 
@@ -274,7 +274,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5A6673;
+  color: #5a6673;
 }
 
 .activities-list {
@@ -299,7 +299,7 @@ body {
 }
 
 .activity-number {
-  background: linear-gradient(135deg, #7BC043 0%, #6BA639 100%);
+  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -312,7 +312,7 @@ body {
 
 .activity-content h3 {
   font-size: 1.3rem;
-  color: #5A6673;
+  color: #5a6673;
   margin-bottom: 1rem;
 }
 
@@ -325,7 +325,7 @@ body {
 /* Contact Section */
 .contact {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #7BC043 0%, #6BA639 100%);
+  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
   color: white;
 }
 
@@ -365,7 +365,7 @@ body {
 
 .contact-button {
   background: white;
-  color: #7BC043;
+  color: #7bc043;
   border: none;
   padding: 12px 30px;
   border-radius: 25px;
@@ -405,7 +405,7 @@ body {
 
 .submit-button {
   background: white;
-  color: #7BC043;
+  color: #7bc043;
   border: none;
   padding: 12px 30px;
   border-radius: 5px;
@@ -421,7 +421,7 @@ body {
 
 /* Footer */
 .footer {
-  background: #5A6673;
+  background: #5a6673;
   color: white;
   text-align: center;
   padding: 2rem;
@@ -482,7 +482,7 @@ body {
     height: 100vh;
     width: 70%;
     max-width: 300px;
-    background: linear-gradient(135deg, #6BA639 0%, #7BC043 100%);
+    background: linear-gradient(135deg, #6ba639 0%, #7bc043 100%);
     flex-direction: column;
     gap: 0;
     padding: 80px 30px 30px;
