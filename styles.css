@@ -1,3 +1,28 @@
+:root {
+  /* Brand Colors */
+  --primary-green: #9dc639;
+  --primary-green-dark: #8bb833;
+  --primary-green-bright: #89d128;
+
+  /* Neutral Colors */
+  --text-primary: #5a6673;
+  --text-secondary: #666;
+  --text-dark: #555;
+  --white: #ffffff;
+
+  /* Background Colors */
+  --bg-light-gray: #f8f9fa;
+  --bg-card-light: #f5f7fa;
+  --bg-card-green: #e8f5e0;
+  --bg-hover: #f0f0f0;
+
+  /* Border Colors */
+  --border-light: #e0e0e0;
+
+  /* Footer */
+  --footer-bg: #5a6673;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +32,7 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #5a6673;
+  color: var(--text-primary);
 }
 
 .container {
@@ -18,8 +43,12 @@ body {
 
 /* Header Navigation */
 .header {
-  background: linear-gradient(135deg, #6ba639 0%, #7bc043 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green-dark) 0%,
+    var(--primary-green) 100%
+  );
+  color: var(--white);
   padding: 1rem 0;
   position: sticky;
   top: 0;
@@ -51,7 +80,7 @@ body {
 }
 
 .nav a {
-  color: white;
+  color: var(--white);
   text-decoration: none;
   font-weight: 500;
   transition: opacity 0.3s ease;
@@ -75,7 +104,7 @@ body {
 .mobile-menu-toggle span {
   width: 25px;
   height: 3px;
-  background: white;
+  background: var(--white);
   border-radius: 3px;
   transition: all 0.3s ease;
 }
@@ -94,8 +123,12 @@ body {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green-bright) 0%,
+    var(--primary-green-dark) 100%
+  );
+  color: var(--white);
   padding: 120px 20px;
   text-align: center;
   min-height: 500px;
@@ -117,8 +150,8 @@ body {
 }
 
 .cta-button {
-  background: white;
-  color: #7bc043;
+  background: var(--white);
+  color: var(--primary-green-bright);
   border: none;
   padding: 15px 40px;
   font-size: 1.1rem;
@@ -138,14 +171,14 @@ body {
 /* About Section */
 .about {
   padding: 80px 20px;
-  background: #f8f9fa;
+  background: var(--bg-light-gray);
 }
 
 .about h2 {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5a6673;
+  color: var(--text-primary);
 }
 
 .about-content {
@@ -157,7 +190,7 @@ body {
 
 .about-text h3 {
   font-size: 1.5rem;
-  color: #7bc043;
+  color: var(--primary-green-bright);
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -174,7 +207,7 @@ body {
 
 .company-info li {
   padding: 0.8rem 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-light);
   font-size: 1rem;
 }
 
@@ -189,7 +222,7 @@ body {
 }
 
 .stat-card {
-  background: white;
+  background: var(--white);
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
@@ -203,12 +236,12 @@ body {
 
 .stat-card h4 {
   font-size: 2.5rem;
-  color: #7bc043;
+  color: var(--primary-green-bright);
   margin-bottom: 0.5rem;
 }
 
 .stat-card p {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 0.95rem;
 }
 
@@ -222,7 +255,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5a6673;
+  color: var(--text-primary);
 }
 
 .capabilities-grid {
@@ -232,14 +265,18 @@ body {
 }
 
 .capability-card {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e0 100%);
+  background: linear-gradient(
+    135deg,
+    var(--bg-card-light) 0%,
+    var(--bg-card-green) 100%
+  );
   padding: 2.5rem;
   border-radius: 10px;
   text-align: center;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  border-left: 5px solid #7bc043;
+  border-left: 5px solid var(--primary-green-bright);
 }
 
 .capability-card:hover {
@@ -254,27 +291,27 @@ body {
 
 .capability-card h3 {
   font-size: 1.3rem;
-  color: #5a6673;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .capability-card p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #555;
+  color: var(--text-dark);
 }
 
 /* Key Activities */
 .activities {
   padding: 80px 20px;
-  background: #f8f9fa;
+  background: var(--bg-light-gray);
 }
 
 .activities h2 {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: #5a6673;
+  color: var(--text-primary);
 }
 
 .activities-list {
@@ -286,7 +323,7 @@ body {
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 2rem;
-  background: white;
+  background: var(--white);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -299,8 +336,12 @@ body {
 }
 
 .activity-number {
-  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green-bright) 0%,
+    var(--primary-green-dark) 100%
+  );
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -312,21 +353,25 @@ body {
 
 .activity-content h3 {
   font-size: 1.3rem;
-  color: #5a6673;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
 .activity-content p {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #555;
+  color: var(--text-dark);
 }
 
 /* Contact Section */
 .contact {
   padding: 80px 20px;
-  background: linear-gradient(135deg, #7bc043 0%, #6ba639 100%);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--primary-green-bright) 0%,
+    var(--primary-green-dark) 100%
+  );
+  color: var(--white);
 }
 
 .contact h2 {
@@ -364,8 +409,8 @@ body {
 }
 
 .contact-button {
-  background: white;
-  color: #7bc043;
+  background: var(--white);
+  color: var(--primary-green-bright);
   border: none;
   padding: 12px 30px;
   border-radius: 25px;
@@ -404,8 +449,8 @@ body {
 }
 
 .submit-button {
-  background: white;
-  color: #7bc043;
+  background: var(--white);
+  color: var(--primary-green-bright);
   border: none;
   padding: 12px 30px;
   border-radius: 5px;
@@ -416,13 +461,13 @@ body {
 }
 
 .submit-button:hover {
-  background: #f0f0f0;
+  background: var(--bg-hover);
 }
 
 /* Footer */
 .footer {
-  background: #5a6673;
-  color: white;
+  background: var(--footer-bg);
+  color: var(--white);
   text-align: center;
   padding: 2rem;
 }
@@ -482,7 +527,11 @@ body {
     height: 100vh;
     width: 70%;
     max-width: 300px;
-    background: linear-gradient(135deg, #6ba639 0%, #7bc043 100%);
+    background: linear-gradient(
+      135deg,
+      var(--primary-green-dark) 0%,
+      var(--primary-green-bright) 100%
+    );
     flex-direction: column;
     gap: 0;
     padding: 80px 30px 30px;
